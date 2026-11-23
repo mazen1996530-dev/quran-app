@@ -1,0 +1,448 @@
+/* =========================================================
+   المتغيرات والألوان - الوضع النهاري والليلي
+   ========================================================= */
+:root {
+  --bg-main: #f4efe6;
+  --bg-paper: #fffdf9;
+  --text-color: #2b1e16;
+  --text-muted: #6b5a4e;
+  --primary-gold: #c59b27;
+  --gold-dark: #8e6d17;
+  --gold-light: #f3e5ab;
+  --border-gold: #d4af37;
+  --surah-bg: #faf4e8;
+  --surah-border: #c59b27;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --modal-bg: rgba(0, 0, 0, 0.6);
+  --verse-num-color: #926d16;
+}
+
+body.dark-theme {
+  --bg-main: #121619;
+  --bg-paper: #1c2226;
+  --text-color: #ece5dd;
+  --text-muted: #a3b0b8;
+  --primary-gold: #d4af37;
+  --gold-dark: #e6c250;
+  --gold-light: #2c363f;
+  --border-gold: #7a6322;
+  --surah-bg: #242c32;
+  --surah-border: #d4af37;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  --modal-bg: rgba(0, 0, 0, 0.8);
+  --verse-num-color: #e6c250;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body {
+  font-family: 'Amiri', 'Traditional Arabic', serif;
+  background-color: var(--bg-main);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =========================================================
+   شريط العنوان العلوي
+   ========================================================= */
+.app-header {
+  width: 100%;
+  background-color: var(--bg-paper);
+  border-bottom: 2px solid var(--border-gold);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-title {
+  font-family: 'Reem Kufi', sans-serif;
+  font-size: 1.8rem;
+  color: var(--primary-gold);
+  letter-spacing: 1px;
+}
+
+.icon-btn {
+  background: transparent;
+  border: 1px solid var(--border-gold);
+  color: var(--text-color);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.icon-btn:hover {
+  background-color: var(--gold-light);
+  color: var(--gold-dark);
+}
+
+/* =========================================================
+   منطقة التحكم والتنقل
+   ========================================================= */
+.main-container {
+  width: 100%;
+  max-width: 900px;
+  padding: 20px 15px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.navigation-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: var(--bg-paper);
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border-gold);
+  box-shadow: var(--shadow);
+}
+
+.nav-btn {
+  background: var(--primary-gold);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.nav-btn:hover {
+  opacity: 0.9;
+}
+
+.page-picker-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.page-picker-wrapper input {
+  width: 65px;
+  padding: 6px;
+  text-align: center;
+  border: 1px solid var(--border-gold);
+  border-radius: 6px;
+  background: var(--bg-main);
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* =========================================================
+   إطار المصحف والزخرفة الإسلامية
+   ========================================================= */
+.quran-frame-outer {
+  width: 100%;
+  background-color: var(--bg-paper);
+  border: 12px solid transparent;
+  border-image: linear-gradient(135deg, var(--primary-gold), var(--border-gold), var(--primary-gold)) 30;
+  box-shadow: var(--shadow);
+  border-radius: 4px;
+  position: relative;
+}
+
+.quran-frame-inner {
+  border: 2px solid var(--primary-gold);
+  margin: 4px;
+  padding: 30px 25px;
+  min-height: 750px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  background-image: radial-gradient(circle at center, transparent 0%, rgba(197, 155, 39, 0.03) 100%);
+}
+
+.page-header-info,
+.page-footer-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-bottom: 1px solid var(--border-gold);
+  padding-bottom: 8px;
+}
+
+.page-footer-info {
+  border-bottom: none;
+  border-top: 1px solid var(--border-gold);
+  padding-bottom: 0;
+  padding-top: 8px;
+  justify-content: center;
+}
+
+.quran-content {
+  margin: 25px 0;
+  text-align: justify;
+  text-align-last: center;
+  direction: rtl;
+  line-height: 2.4;
+}
+
+/* خط العثماني والآيات */
+.ayah-text {
+  font-family: 'Amiri Quran', 'Amiri', serif;
+  font-size: 1.85rem;
+  word-spacing: 4px;
+}
+
+/* رأس السورة المزخرف */
+.surah-header-block {
+  margin: 35px auto 20px;
+  text-align: center;
+  background: var(--surah-bg);
+  border: 2px solid var(--surah-border);
+  border-radius: 8px;
+  padding: 12px 20px;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.surah-title {
+  font-family: 'Reem Kufi', serif;
+  font-size: 1.6rem;
+  color: var(--primary-gold);
+}
+
+.surah-meta {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.bismillah-block {
+  text-align: center;
+  font-family: 'Amiri Quran', serif;
+  font-size: 1.7rem;
+  color: var(--primary-gold);
+  margin: 20px 0 30px;
+}
+
+/* فاصل أرقام الآيات المزخرف */
+.verse-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 0 6px;
+  color: var(--verse-num-color);
+  font-family: 'Amiri', serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.verse-number::before {
+  content: " ۝ ";
+  font-size: 1.8rem;
+  color: var(--primary-gold);
+  margin-left: 2px;
+}
+
+/* =========================================================
+   شاشة التحميل
+   ========================================================= */
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+  gap: 15px;
+  color: var(--text-muted);
+}
+
+.spinner {
+  width: 45px;
+  height: 45px;
+  border: 4px solid var(--border-gold);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* =========================================================
+   نافذة الفهرس (Modal)
+   ========================================================= */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--modal-bg);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.modal-overlay.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: var(--bg-paper);
+  border: 2px solid var(--border-gold);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 750px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.modal-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border-gold);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  color: var(--primary-gold);
+  font-family: 'Reem Kufi', sans-serif;
+  font-size: 1.4rem;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.modal-search {
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border-gold);
+}
+
+.modal-search input {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid var(--border-gold);
+  background: var(--bg-main);
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.surah-grid {
+  padding: 15px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.surah-card {
+  background: var(--surah-bg);
+  border: 1px solid var(--border-gold);
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.surah-card:hover {
+  border-color: var(--primary-gold);
+  transform: translateY(-2px);
+}
+
+.surah-card-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.surah-card-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+
+.surah-card-meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.surah-card-num {
+  font-family: 'Reem Kufi', sans-serif;
+  color: var(--primary-gold);
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* =========================================================
+   التوافق مع الشاشات الصغيرة
+   ========================================================= */
+@media (max-width: 600px) {
+  .header-container {
+    padding: 10px;
+  }
+  .app-title {
+    font-size: 1.3rem;
+  }
+  .icon-btn span {
+    display: none;
+  }
+  .quran-frame-inner {
+    padding: 15px 10px;
+  }
+  .ayah-text {
+    font-size: 1.5rem;
+    line-height: 2.2;
+  }
+  .surah-grid {
+    grid-template-columns: 1fr;
+  }
+}
